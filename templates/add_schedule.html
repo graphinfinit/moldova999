@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Расписание задач</h1>
+<hr>
+ <form action="#" method="POST" enctype="multipart/form-data">
+     <h4>Название пула</h4>
+<select name='pool_name' id='q'>
+    {% for pool_name in pools_names %}
+    <option value='{{pool_name}}'>{{pool_name}}</option>
+    {% endfor %}
+</select>
+
+<hr>
+<h4>Расписание</h4>
+     {% for i in iter %}
+     {{iter[i]}} c <input type="time" name='{{i}}_from'> до <input type="time" name='{{i}}_to'>
+    Интервал <input type="number" name='{{i}}_int' min="1"><br>
+     {% endfor %}
+<input type="submit">
+</form>
+
+<h4>Пулы с расписанием</h4>
+<ul>
+    {% for n in fullpools_names %}
+    <li>{{n}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

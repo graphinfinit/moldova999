@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Задачи</h1>
+<form method="POST" action="">
+<select name='pool_name' id='q'>
+    {% for pool_name in fullpools_names %}
+    <option value='{{pool_name}}'>{{pool_name}}</option>
+    {% endfor %}
+</select>
+<button type="submit" name="action" value="start">Запустить</button>
+<button type="submit" name="action" value="stop">Остановить</button>
+</form>
+
+<h4>Запущенные задачи</h4>
+<ul>
+    {% for job in jobs_list %}
+    <li>{{job}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1>Загрузить заголовки</h1>
+
+Формат файла:'.txt'<br>
+Разделитель: ';'<br>
+
+<hr>
+
+ <form action="" method="POST" enctype="multipart/form-data">
+  <label for="q">Название группы заголовков(eng)</label>
+  <input required="required" type='text' id='q' name='text_group'><hr>
+  <label for="text">Текстовый файл</label>
+  <input required="required" type="file" id="text" name="text" accept=".txt">
+  <input type="submit">
+</form>
+<hr>
+<h4>Сохраненные группы</h4>
+
+
+<ul>
+
+ {% for group in groups %}
+ <li>{{group}}</li>
+ {% endfor %}
+
+</ul>
+.
+
+{% endblock %}

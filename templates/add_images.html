@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1>Загрузить фотографию</h1>
+
+Не более 5 фото в форме. You can upload up to 1200 images per day.
+<hr>
+
+ <form action="" method="POST" enctype="multipart/form-data">
+  <label for="q">Название группы(eng)</label>
+  <input required="required" type='text' id='q' name='image_group'><hr>
+  <label for="img">Фото</label>
+  <input required="required" type="file" id="img" name="img" accept="image/*"  multiple="">
+  <input type="submit">
+</form>
+<hr>
+<h4>Сохраненные группы</h4>
+
+
+<ul>
+
+ {% for group in groups %}
+ <li>{{group}}</li>
+ {% endfor %}
+
+</ul>
+.
+
+
+{% endblock %}
+

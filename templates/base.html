@@ -1,0 +1,107 @@
+<!Doctype Html>
+
+<html>
+<head>
+	<meta charset = 'UTF-8'>
+
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- -->
+
+<style>
+	.sidenav {
+    height: 100%;
+    width: 220px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 220px; /* Same as the width of the sidenav */
+    font-size: 15px; /* Increased text to enable scrolling */
+    padding: 20px 50px 20px 20px;
+    height: 100%;
+    background-color: #DBD1E4;
+
+</style>
+</head>
+
+<body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(e) {
+    var depended_object = document.getElementsByClassName('depends_on');
+    var parent_id = depended_object[0].id;
+    document.getElementById(parent_id).onclick = function reload_child(){
+        let ht = document.getElementById(parent_id);
+        let data = {"parent_option_id": ht.value, "dependency_feature_id":parent_id}
+        //hello
+        $.ajax({
+                type: "POST",
+                url: "/get_extra_options",
+                data: data,
+                success: function(response) {
+                    let depended_object = document.getElementsByClassName('depends_on');
+                    let options = depended_object[0].options;
+
+	                while(options.length > 0){
+	                options[options.length-1] = null;
+	                }
+                    for (var i=0, len=response.options.length; i<len; i++) {
+                    options[options.length] = new Option(response.options[i].title,response.options[i].id,true);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+    };
+});
+
+</script>
+
+
+<div class="sidenav">
+<ul>
+    <li><a href = "/index">Главная</a></li>
+    <li><a href = "/upload_titles">Загрузить заголовки</a></li>
+    <li><a href = "/upload_image">Загрузить фото</a></li>
+    <li><a href = "/add">Создать пул объявлений</a></li>
+    <li><a href = "add_schedule">Добавить расписание для пула</a></li>
+    <li><a href = "/start">Запуск задач</a></li>
+
+</ul>
+</div>
+
+<div class="main">
+{% block content %}{% endblock %}
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+crossorigin="anonymous"></script>
+<!-- -->
+
+</body>
+
+</html>

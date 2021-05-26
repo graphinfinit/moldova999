@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Выберите категорию</h1>
+<div class="nav">
+    <ul class="topmenu">
+        {% for category in categories %}
+        <li><a href="add?category={{category.id}}">{{category.title}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

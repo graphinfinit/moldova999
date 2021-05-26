@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>__ _ 999.md __ _</h1>
+
+<hr>
+
+Веб-приложение 999SPMR v1.0<br>
+@graphinfinit<br><hr>
+
+<h3>Настройки</h3>
+
+<form method="POST" action="">
+    <br>Токен:<br>
+    <input type='text' id='q' name='token'><br>
+    Кол-во прикрепляемых фото: <br>
+    <input type='number' id='count_foto' name='count_foto' min="1"><br><hr>
+    <button type="submit" name="action" value="start">Изменить настройки</button><br>
+</form>
+<h3>...</h3>
+Фото: {{count}} шт.<br>
+Токен: {{token}}<br>
+
+{% endblock %}
